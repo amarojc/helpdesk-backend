@@ -4,7 +4,7 @@ public enum Perfil {
 	//Importante número para não gerar problemas futuros, caso um novo
 	// desenvolvedor for fazer manutenção no projeto e acrescentar mais perfis 
 	
-	ADM(0, "ROLE_ADMIN"), 
+	ADMIN(0, "ROLE_ADMIN"), 
 	CLIENTE(1,"ROLE_CLIENTE"), 
 	TECNICO(2,"ROLE_TECNICO");
 	
