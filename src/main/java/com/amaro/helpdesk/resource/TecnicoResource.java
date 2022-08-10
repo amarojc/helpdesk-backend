@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amaro.helpdesk.domain.Tecnico;
+import com.amaro.helpdesk.domain.dtos.TecnicoDTO;
 import com.amaro.helpdesk.services.TecnicoService;
 
-//Classe de controle, camada de resource, REST, primeira camada que a aplicação cliente acessa.
+//Classe de controle, camada de resource, REST, primeira camada que  aplicação cliente acessa.
 //RequestMapping -> Adicionar o endpoint inicial para os serviços. Ou seja, quando for acessar quaisquer
 //serviços do técnico será utilizado o /tecnicos.
 @RestController
@@ -27,11 +28,12 @@ public class TecnicoResource {
 	//Value recebe uma variável de path variable
 	//localhost:8080/tecnicos/1
 	//Passa como parametro a pathvariable
+	//Retornar o TecnicoDTO responsável pela transferência de dados
 	@GetMapping(value =  "/{id}")
-	public ResponseEntity<Tecnico> findById(@PathVariable Integer id){
+	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){
 		Tecnico obj = service.findById(id);
 		
-		//Retornar no corpo da resposta o objeto
-		return ResponseEntity.ok().body(obj);
+		//Retornar no corpo da resposta o objeto de TecnicoDTO
+		return ResponseEntity.ok().body(new TecnicoDTO(obj));
 	}
 }
