@@ -33,7 +33,7 @@ public class DBService {
 		tec1.addPerfil(Perfil.ADMIN);
 		
 		Tecnico tec2 = new Tecnico(null, "Tatiana Amaro", "93916862065", "tatin@mail.com", "123");
-		tec1.addPerfil(Perfil.TECNICO);
+		tec2.addPerfil(Perfil.TECNICO);
 		
 		
 		Cliente cli1 = new Cliente(null, "Danilo", "80527954780", "danilo@mail.com", "123");
