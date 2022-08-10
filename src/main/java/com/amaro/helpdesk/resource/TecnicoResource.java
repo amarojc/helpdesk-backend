@@ -33,7 +33,13 @@ public class TecnicoResource {
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id){
 		Tecnico obj = service.findById(id);
 		
-		//Retornar no corpo da resposta o objeto de TecnicoDTO
-		return ResponseEntity.ok().body(new TecnicoDTO(obj));
+		try {
+			//Retornar no corpo da resposta o objeto de TecnicoDTO
+			return ResponseEntity.ok().body(new TecnicoDTO(obj));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.ok().body(null);
+		}
+
 	}
 }
