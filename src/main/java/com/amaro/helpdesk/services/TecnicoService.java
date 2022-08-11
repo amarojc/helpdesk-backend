@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amaro.helpdesk.domain.Tecnico;
+import com.amaro.helpdesk.domain.dtos.TecnicoDTO;
 import com.amaro.helpdesk.repositories.TecnicoRepository;
 import com.amaro.helpdesk.services.exceptions.ObjectNotFoundException;
 
@@ -26,5 +27,16 @@ public class TecnicoService {
 
 	public List<Tecnico> findAll() {
 		return repository.findAll();
+	}
+
+	//As informações que serão gravadas será do tipo Tecnico e não TecnicoDTO
+	//Neccesário converter TecnicoDTO para Tecnico
+	public Tecnico create(TecnicoDTO objDTO) {
+		//Id null por questões de segurança, caso seja passado algum valor para o id, na requisição.
+		//Para o BD não entender que seja um update.
+		objDTO.setId(null);
+		Tecnico newObj = new Tecnico(objDTO);
+		//Chamada assincrona -> Primeiro irá salvar no banco e depois retonar o insert com o id do Tecnico criado.
+		return repository.save(newObj);
 	}
 }

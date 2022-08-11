@@ -26,6 +26,7 @@ public class TecnicoDTO  implements Serializable{
 	
 	public TecnicoDTO() {
 		super();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	//Converter Tecnico para Tecnico DTO
@@ -42,6 +43,7 @@ public class TecnicoDTO  implements Serializable{
 		//Collectors.toSet para realizar a conversão para o tipo Set
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
