@@ -3,6 +3,8 @@ package com.amaro.helpdesk.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,26 @@ public class TecnicoService {
 		return repository.save(newObj);
 	}
 
+	public Tecnico update(Integer id,@Valid TecnicoDTO objDTO) {
+		/* Set do  id da requisição em objDTO, por medida de segurança, 
+		 * caso o usuário altere o id da requisição e altere o id na url.
+		 */
+		objDTO.setId(id);
+		
+		/* Se o objeto que o usuário está tentando atualizar não exista irá gerar uma exceção, 
+		 * já atribuído no método findById. Senão, retorna os valores do id no BD e insere em oldObj.
+		 */
+		Tecnico oldObj = findById(id);		
+		//Valida os campos de cpf e email..
+		validaPorCpfEEmail(objDTO);
+		
+		//Tudo ok, atribui o obj antigo as informações da atualizadas da requisição do cliente.
+		oldObj = new Tecnico(objDTO);
+				
+		return repository.save(oldObj);
+	}
+
+	
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 		
