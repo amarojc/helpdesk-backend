@@ -1,5 +1,8 @@
 package com.amaro.helpdesk.resource;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,5 +31,14 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(new ClienteDTO(cli));
 	}
 	
+	@GetMapping
+	public ResponseEntity<List<ClienteDTO>> findAll(){
+		List<Cliente> list = clienteService.findAll();
+		
+		List<ClienteDTO> listDTO = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(listDTO);
+		
+	}
 
 }
