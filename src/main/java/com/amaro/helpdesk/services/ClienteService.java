@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amaro.helpdesk.domain.Cliente;
+import com.amaro.helpdesk.domain.Pessoa;
+import com.amaro.helpdesk.domain.dtos.ClienteDTO;
 import com.amaro.helpdesk.repositories.ClienteRepository;
 import com.amaro.helpdesk.repositories.PessoaRepository;
+import com.amaro.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.amaro.helpdesk.services.exceptions.ObjectNotFoundException;
+import com.amaro.helpdesk.services.validation.ValidaDadosRequeridosPessoa;
 
 @Service
 public class ClienteService{
@@ -31,6 +35,31 @@ public class ClienteService{
 	//Buscando todos os cliente no BD.
 	public List<Cliente> findAll(){
 		return clienteRepository.findAll();
+	}
+	
+	//Criando um novo cliente
+	public Cliente create(ClienteDTO objDTO) {
+		objDTO.setId(null);
+		
+		validaPorCpfEEmail(objDTO);
+		
+		Cliente newCli = new Cliente(objDTO);
+		return clienteRepository.save(newCli);
+	}
+	
+	
+	private void validaPorCpfEEmail(ClienteDTO objDTO) {
+		Optional<Pessoa> p = pessoaRepository.findByCpf(objDTO.getCpf());
+		
+		if(p.isPresent() && p.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
+		}
+		
+		p = pessoaRepository.findByEmail(objDTO.getEmail());
+		
+		if(p.isPresent() && p.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("Email já cadastrado no sistema!");
+		}
 	}
 	
 	
