@@ -1,3 +1,4 @@
+
 package com.amaro.helpdesk.domain.dtos;
 
 import java.io.Serializable;
@@ -8,53 +9,46 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
-import com.amaro.helpdesk.domain.Tecnico;
+import com.amaro.helpdesk.domain.Cliente;
 import com.amaro.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class TecnicoDTO  implements Serializable{
+public class ClienteDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	protected  Integer id;
+	protected Integer id;
 	
-	@NotNull(message = "O campo NOME é requerido!")
+	@NotNull(message = "O campo nome é requerido!")
 	protected String nome;
 	
 	@NotNull(message = "O campo CPF é requerido!")
 	protected String cpf;
 	
-	@NotNull(message = "O campo EMAIL é requerido!")
+	@NotNull(message =  "O campo email é requerido!")
 	protected String email;
 	
-	@NotNull(message = "O campo SENHA é requerido!")
+	@NotNull(message = "O campo senha é requerido!")
 	protected String senha;
 	
-	protected Set<Integer> perfis =  new HashSet<>();
-	
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	protected LocalDate dataCriacao = LocalDate.now();
+	protected LocalDate dataCricacao = LocalDate.now();
+
+	protected Set<Integer> perfis = new HashSet<>();
 	
-	public TecnicoDTO() {
-		super();
-		addPerfil(Perfil.CLIENTE);
+	public ClienteDTO() {
+		 super();
+		 addPerfil(Perfil.CLIENTE);
 	}
 
-	//Converter Tecnico para Tecnico DTO
-	public TecnicoDTO(Tecnico obj) {
+	public ClienteDTO(Cliente obj) {
 		super();
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.cpf = obj.getCpf();
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
-		//Mapear obj.getPerfis para retornar o código.
-		//Para cada perfil x, retorna o código do objeto
-		//Utilizado o collect para coletar todos os perfis.
-		//Collectors.toSet para realizar a conversão para o tipo Set
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-		this.dataCriacao = obj.getDataCriacao();
-		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -97,26 +91,20 @@ public class TecnicoDTO  implements Serializable{
 		this.senha = senha;
 	}
 
+	public LocalDate getDataCricacao() {
+		return dataCricacao;
+	}
+
+	public void setDataCricacao(LocalDate dataCricacao) {
+		this.dataCricacao = dataCricacao;
+	}
+
 	public Set<Perfil> getPerfis() {
-		//Colletando todos os perfis declarados no enum
-		//Map para cada x declaro um perfil coletado e convertido para o tipo Set
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
-
-	public LocalDate getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(LocalDate dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
 	
-	
-	
-	
-
 }
