@@ -63,6 +63,16 @@ public class ClienteService{
 		
 	}
 	
+	//Delete cliente
+	public void delete(Integer id) {
+		Cliente cli = findById(id);
+		if(cli.getChamados().size() > 0) {
+			throw new DataIntegrityViolationException("Cliente possui chamados e não poderá ser deletado!");
+		}
+		clienteRepository.deleteById(id);
+	}
+	
+	
 	private void validaPorCpfEEmail(ClienteDTO objDTO) {
 		Optional<Pessoa> p = pessoaRepository.findByCpf(objDTO.getCpf());
 		
