@@ -59,6 +59,8 @@ public class Chamado  implements Serializable{
 		this.cliente = cliente;
 	}
 
+
+
 	public Integer getId() {
 		return id;
 	}

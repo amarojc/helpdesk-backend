@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.amaro.helpdesk.domain.Tecnico;
 import com.amaro.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,6 +23,8 @@ public class TecnicoDTO  implements Serializable{
 	@NotNull(message = "O campo NOME é requerido!")
 	protected String nome;
 	
+	//Anotação de CPF para verificar se é um CPF válido...
+	@CPF
 	@NotNull(message = "O campo CPF é requerido!")
 	protected String cpf;
 	

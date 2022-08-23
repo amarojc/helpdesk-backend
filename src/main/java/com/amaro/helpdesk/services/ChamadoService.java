@@ -1,0 +1,26 @@
+package com.amaro.helpdesk.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.amaro.helpdesk.domain.Chamado;
+import com.amaro.helpdesk.repositories.ChamadoRepository;
+import com.amaro.helpdesk.services.exceptions.ObjectNotFoundException;
+
+@Service
+public class ChamadoService {
+	
+	//Faz a comunicação com o banco de dados....
+	@Autowired
+	private ChamadoRepository chamadoRepository;
+	
+	public Chamado findById(Integer id){
+		Optional<Chamado> obj = chamadoRepository.findById(id);
+		System.out.println("CHEGOU AQUIIIII!" + obj.toString());
+		
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
+	}
+
+}
