@@ -17,9 +17,7 @@ public class ChamadoService {
 	private ChamadoRepository chamadoRepository;
 	
 	public Chamado findById(Integer id){
-		Optional<Chamado> obj = chamadoRepository.findById(id);
-		System.out.println("CHEGOU AQUIIIII!" + obj.toString());
-		
+		Optional<Chamado> obj = chamadoRepository.findById(id);		
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
 	}
 
