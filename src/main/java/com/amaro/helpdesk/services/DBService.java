@@ -43,13 +43,13 @@ public class DBService {
 		
 		
 		Cliente cli2 = new Cliente(null, "Nickolas Correa", "97431738030", "nick@mail.com", "123");
-		Chamado c2 = new Chamado(null, Prioridade.ALTA, Status.ABERTO, "Impressora com defeito", "Não está reconhecendo o papel.", null, cli2);
+		Chamado c2 = new Chamado(null, Prioridade.ALTA, Status.ABERTO, "Impressora com defeito", "Não está reconhecendo o papel.", tec3, cli2);
 		Chamado c3 = new Chamado(null, Prioridade.BAIXA, Status.ANDAMENTO, "Internet", "Internet não está funcionando.", tec1, cli2);
 		Chamado c4 = new Chamado(null, Prioridade.ALTA, Status.ANDAMENTO, "Computador com problema.", "Máquina travando e reiniciando.", tec2, cli2);
 		
 		
 		Cliente cli3 = new Cliente(null, "Nadir Porto", "31658721047", "nadir@mail.com", "123");
-		Chamado c5 = new Chamado(null, Prioridade.MEDIA, Status.ABERTO, "Planilhas", "Não consta um software de planilha instalado.", null, cli3);
+		Chamado c5 = new Chamado(null, Prioridade.MEDIA, Status.ABERTO, "Planilhas", "Não consta um software de planilha instalado.", tec3, cli3);
 
 		tecnicoRepository.saveAll(Arrays.asList(tec1, tec2, tec3));
 		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));

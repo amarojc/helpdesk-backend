@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
 
 import com.amaro.helpdesk.domain.dtos.TecnicoDTO;
 import com.amaro.helpdesk.domain.enums.Perfil;
@@ -20,7 +24,7 @@ public class Tecnico extends Pessoa{
 	//Retornar apenas as informações do tecnico ignorando os chamados
 	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico")
-	private List<Chamado> chamados = new ArrayList<>();
+    private List<Chamado> chamados = new ArrayList<>();
 	
 	
 	public Tecnico() {
