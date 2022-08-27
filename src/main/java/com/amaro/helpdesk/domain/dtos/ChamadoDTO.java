@@ -3,6 +3,8 @@ package com.amaro.helpdesk.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.amaro.helpdesk.domain.Chamado;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,12 +17,18 @@ public class ChamadoDTO  implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yy")
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yy")
-	private LocalDate dataFechamento;
+	private LocalDate dataFechamento;	
+	@NotNull(message = "O campo PRIORIDADE é requerido!")
 	private Integer prioridade;
+	@NotNull(message = "O campo Status é requerido!")
 	private Integer status;
+	@NotNull(message = "O campo TÍTULO é requerido!")
 	private String titulo;
+	@NotNull(message = "O campo OBSERVAÇÕES é requerido!")
 	private String observações;
+	@NotNull(message = "O campo TÉCNICO é requerido!")
 	private Integer tecnico;
+	@NotNull(message = "O campo CLIENTE é requerido!")
 	private Integer cliente;
 	
 	//Retorno o nomes para realizar apenas uma requisição, ganhando mais performece na aplicação.

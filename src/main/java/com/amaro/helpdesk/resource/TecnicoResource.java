@@ -68,7 +68,8 @@ public class TecnicoResource {
 		//em resposta a requisição solicitada.
 		//Passadando o caminho de acesso ao objeto na URI (path)
 		//Busco o novo id criado (buildAndExpand) e adiciono na URI já convertido para uma URI (toUri) 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(newObj.getId()).toUri();
 				
 		return ResponseEntity.created(uri).build();
 	}
