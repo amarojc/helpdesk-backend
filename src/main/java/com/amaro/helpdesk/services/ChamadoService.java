@@ -1,7 +1,10 @@
 package com.amaro.helpdesk.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,11 +40,19 @@ public class ChamadoService {
 		return chamadoRepository.findAll();
 	}
 	
-	public Chamado create(ChamadoDTO objDTO) {
+	public Chamado create(@Valid ChamadoDTO objDTO) {
 		//Antes de criar o chamado, verifica informações referente ao tecnico, cliente e se o chamado já existe.
 		return chamadoRepository.save(newChamado(objDTO));
 	}
 	
+
+	public Chamado update(Integer id, @Valid ChamadoDTO objDTO) {
+		objDTO.setId(id);
+		Chamado oldObj = findById(id);
+		oldObj = newChamado(objDTO);
+		
+		return chamadoRepository.save(oldObj);
+	}
 	
 	private Chamado newChamado(ChamadoDTO objDTO) {
 		//Verificar se existe o técnico e o cliente.
@@ -56,6 +67,9 @@ public class ChamadoService {
 			ch.setId(objDTO.getId());
 		}
 		
+		if(objDTO.getStatus().equals(2)) {
+			ch.setDataFechamento(LocalDate.now());
+		}
 		ch.setTecnico(t);
 		ch.setCliente(c);
 		ch.setPrioridade(Prioridade.toEnum(objDTO.getPrioridade()));
@@ -63,8 +77,8 @@ public class ChamadoService {
 		ch.setTitulo(objDTO.getTitulo());
 		ch.setObvervacoes(objDTO.getObservações());
 		
-		return ch;
+		return ch;	
 				
-	}
+	}	
 
 }
