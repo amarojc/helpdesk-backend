@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.amaro.helpdesk.domain.Pessoa;
@@ -30,6 +31,9 @@ public class TecnicoService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	public Tecnico findById(Integer id) {
 		//Pode encontrar ou não o objeto no banco.
 		Optional<Tecnico> obj = repository.findById(id);
@@ -49,6 +53,8 @@ public class TecnicoService {
 		//Para o BD não entender que seja um update.
 		objDTO.setId(null);
 		
+		//Passo a senha encodada/Criptografada 
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		//Método para verificar se CPF já está cadastrado no banco
 		validaPorCpfEEmail(objDTO);
 		
