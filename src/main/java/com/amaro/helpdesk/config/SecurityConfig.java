@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.amaro.helpdesk.security.JWTAuthenticationFilter;
+import com.amaro.helpdesk.security.JWTAuthorizationFilter;
 import com.amaro.helpdesk.security.JWTUtil;
 
 
@@ -25,8 +27,12 @@ import com.amaro.helpdesk.security.JWTUtil;
 	
 	A partir da versão 5.7 o Spring descontinuou o uso do WebSecurityConfigurerAdapter,
 	para encorajar uma configuração de segurança baseada em componentes
+	
+	@EnableGlobalMethodSecurity
+	Utilizar nos endpoints 
  */
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	/*
@@ -74,6 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//authenticationManager -> Método da classe que retornar  WebSecurityConfigurerAdapter
 		//Adiciono no filtro a resposta de autenticação do usuário podendo ser sucesso ou negado.
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		
+		//Registro o filtro de Autorização
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		
 		//Autorizo as requisições de PUBLIC_MATCHERS e de todas as requisições que estão autenticadas (.anyRequest().authenticated()).
 		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();

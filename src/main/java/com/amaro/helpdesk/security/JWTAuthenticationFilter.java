@@ -23,7 +23,7 @@ Processa um envio de formulário de autenticação.
 Chamado AuthenticationProcessingFilter do Spring Security 3.0.
 Os formulários de login devem apresentar dois parâmetros para este filtro: 
 nome de usuário e senha. Os nomes de parâmetros padrão a serem usados ​​estão contidos
-nos campos estáticos SPRING_SECURITY_FORM_USERNAME_KEYe SPRING_SECURITY_FORM_PASSWORD_KEY. 
+nos campos estáticos SPRING_SECURITY_FORM_USERNAME_KEY e SPRING_SECURITY_FORM_PASSWORD_KEY. 
 Os nomes dos parâmetros também podem ser alterados definindo as propriedades usernameParametere passwordParameter.
 
 Este filtro por padrão responde à URL /login.
