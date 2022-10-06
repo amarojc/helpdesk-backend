@@ -73,6 +73,10 @@ public class TecnicoService {
 		 * já atribuído no método findById. Senão, retorna os valores do id no BD e insere em oldObj.
 		 */
 		Tecnico oldObj = findById(id);		
+		
+		if(!objDTO.getSenha().equals(oldObj.getSenha()))
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		
 		//Valida os campos de cpf e email..
 		validaPorCpfEEmail(objDTO);
 		

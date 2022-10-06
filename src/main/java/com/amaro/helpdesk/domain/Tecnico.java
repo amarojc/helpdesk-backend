@@ -20,7 +20,7 @@ public class Tecnico extends Pessoa{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//Para evitar que ocarra uma serialização e um loop infinito
+	//Para evitar que ocorra uma serialização e um loop infinito
 	//Retornar apenas as informações do tecnico ignorando os chamados
 	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico")

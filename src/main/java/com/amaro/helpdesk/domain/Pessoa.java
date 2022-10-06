@@ -53,8 +53,7 @@ public abstract class Pessoa implements Serializable {
 	
 	public Pessoa() {
 		super();
-		//Considerar que toda pessoa criada sem passar nenhum parâmetro
-		// ela terá um perfil de cliente.
+		//Considerar que toda pessoa criada sem passar nenhum parâmetro ela terá um perfil de cliente.
 		addPerfil(Perfil.CLIENTE);
 	}
 
