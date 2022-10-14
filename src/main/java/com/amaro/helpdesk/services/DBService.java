@@ -31,26 +31,26 @@ public class DBService {
 	private BCryptPasswordEncoder encoder;
 	
 	public void instanciaDB() {
-		Tecnico tec1 = new Tecnico(null, "Jorge Amaro", "63653230268", "inf.amaro.jc@mail.com", encoder.encode("123"));
+		Tecnico tec1 = new Tecnico(null, "Amaro Cavalcante", "63653230268", "amaro@mail.com", encoder.encode("123"));
 		tec1.addPerfil(Perfil.ADMIN);
 		
-		Tecnico tec2 = new Tecnico(null, "Tatiana Amaro", "93916862065", "tatin@mail.com", encoder.encode("123"));
+		Tecnico tec2 = new Tecnico(null, "Maria Madalena", "93916862065", "maria@mail.com", encoder.encode("123"));
 		tec2.addPerfil(Perfil.TECNICO);
 		
-		Tecnico tec3 = new Tecnico(null, "Raimundo Nonato", "58561398019", "teste3@mail.com", encoder.encode("123"));
+		Tecnico tec3 = new Tecnico(null, "Raimundo Nonato", "58561398019", "raimundo@mail.com", encoder.encode("123"));
 		tec2.addPerfil(Perfil.TECNICO);
 		
-		Cliente cli1 = new Cliente(null, "Danilo", "80527954780", "danilo@mail.com", encoder.encode("123"));
+		Cliente cli1 = new Cliente(null, "Pedro de Lara", "80527954780", "pedro@mail.com", encoder.encode("123"));
 		Chamado c1 = new Chamado(null, Prioridade.MEDIA, Status.ANDAMENTO, "Chamado 01", "Primeiro chamado", tec1, cli1);
 		
 		
-		Cliente cli2 = new Cliente(null, "Nickolas Correa", "97431738030", "nick@mail.com", encoder.encode("123"));
+		Cliente cli2 = new Cliente(null, "Silvio Santos", "97431738030", "silvio@mail.com", encoder.encode("123"));
 		Chamado c2 = new Chamado(null, Prioridade.ALTA, Status.ABERTO, "Impressora com defeito", "Não está reconhecendo o papel.", tec3, cli2);
 		Chamado c3 = new Chamado(null, Prioridade.BAIXA, Status.ANDAMENTO, "Internet", "Internet não está funcionando.", tec1, cli2);
 		Chamado c4 = new Chamado(null, Prioridade.ALTA, Status.ANDAMENTO, "Computador com problema.", "Máquina travando e reiniciando.", tec2, cli2);
 		
 		
-		Cliente cli3 = new Cliente(null, "Nadir Porto", "31658721047", "nadir@mail.com", encoder.encode("123"));
+		Cliente cli3 = new Cliente(null, "Ivo Holanda", "31658721047", "ivo@mail.com", encoder.encode("123"));
 		Chamado c5 = new Chamado(null, Prioridade.MEDIA, Status.ABERTO, "Planilhas", "Não consta um software de planilha instalado.", tec3, cli3);
 
 		tecnicoRepository.saveAll(Arrays.asList(tec1, tec2, tec3));
