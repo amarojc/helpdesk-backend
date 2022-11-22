@@ -19,4 +19,4 @@
 * CRUD
 * Teste API REST usando a ferramenta Postman
 * Deploy no Heroku
-#### Acesse o frontend do projeto: [Helpdesk Front-end](https://github.com/amarojc/helpdesk-front)
+#### Acesse o frontend do projeto aqui no github: [Helpdesk Front-end](https://github.com/amarojc/helpdesk-front)
