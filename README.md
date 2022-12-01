@@ -1,22 +1,54 @@
-# helpdesk-back-end
-> Esse é um sistema para gerenciamento de chamados simulando um simples Help Desk.
-## Tecnologias utilizadas
-* Spring Boot 2.3.x
-* Spring Data JPA
-* Spring Security
-* Spring MVC
-* Hibernate
-* Autenticação com Tokens JWT
-* Autorização com Tokens JWT
-* Banco de dados h2 em tempo de compilação
-*  Banco de dados MySQL
-*  Tratamento de exceções personalizada
-* Desenvolvimento em camadas usando o padrão MVC
-* Padrão DTO (Data Transfer Objects)
-* Implementado perfis de Teste e Desenvolvimento
-* Validações com Validations
-* Protocolo HTTP no padrão REST
-* CRUD
-* Teste API REST usando a ferramenta Postman
-* Deploy no Heroku
-#### Acesse o frontend do projeto aqui no github: [Helpdesk Front-end](https://github.com/amarojc/helpdesk-front)
+# Help Desk (back end)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/amarojc/helpdesk-backend/blob/master/LICENCE) 
+
+# Sobre o projeto
+
+https://helpdesk-front-ecru.vercel.app
+
+Helpdesk é uma aplicação full stack web utilizando Spring Boot 2.3.12, no Back end e o Angular 12, no [front end](https://github.com/amarojc/helpdesk-frontend).
+
+A aplicação consiste em realizar o gerenciamento de chamados/ordens de serviço simulando um simples Help Desk.
+
+De fácil compreensão a aplicação conta com um menu, na lateral esquerda, onde o usuário poderá navegar pelo sistema podendo criar, alterar, 
+editar ou excluir um determinado técnico ou cliente, abrir um novo chamado, alterar o status do chamado e realizar filtros para localizar uma determinada informação.
+
+Necessário que o usuário realize login com seu email e senha para ter acesso ao sistema e suas funcionalidade.
+
+Somente pessoas com o perfil de ADM têm acesso para criar, atualizar e deletar um determinado técnico.
+
+Técnicos e/ou clientes que possuem ordem de serviços/chamados não podem ser deletados.
+
+É realizada a validação dos dados ao realizar um novo cadastro, no backend e no frontend.
+
+## Modelo conceitual
+![DC_HELPDESK](https://github.com/amarojc/helpdesk-front/blob/master/src/assets/img/DC_Helpdesk.png)
+
+# Tecnologias utilizadas
+## Back end
+- Java
+- Spring Boot 2.3.12 RELEASE
+- Spring Data JPA
+- Spring Security
+- Spring MVC
+- Hibernate
+- Maven
+- Autenticação e Autorização com Tokens JWT
+- Banco de dados h2 em tempo de compilação
+- Banco de dados MySQL
+- Tratamento de exceções personalizada 
+- Validações com Validations
+- Desenvolvimento em camadas usando padrão MVC
+- Implementado perfil de Teste e Desenvolvimento
+- Protocolo HTTP no padrão REST
+- Teste API REST usando a ferramenta Postman
+
+## Front end
+Acesse: https://github.com/amarojc/helpdesk-frontend
+
+## Implantação em produção
+- Back end: Heroku
+- Front end web: Vercel
+- Banco de dados: MySql
+
+# Autor
+Jorge Amaro de Carvalho
