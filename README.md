@@ -30,7 +30,6 @@ Técnicos e/ou clientes que possuem ordem de serviços/chamados não podem ser d
 - Spring Data JPA
 - Spring Security
 - Spring MVC
-- Hibernate
 - Maven
 - Autenticação e Autorização com Tokens JWT
 - Banco de dados h2 em tempo de compilação
